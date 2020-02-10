@@ -27,8 +27,6 @@ export class HomePage implements OnInit {
       this.items = res;
       console.log('my items:');
       console.log(this.items);
-      console.log('the id is:');
-      console.log(this.items.id);
     });
 
   }

@@ -27,9 +27,9 @@ export class ItemService {
             const data = a.payload.doc.data();
             const id = a.payload.doc.id;
             return { id, ...data};
-          })
+          });
         })
-    )
+    );
   }
 
   getItems() {

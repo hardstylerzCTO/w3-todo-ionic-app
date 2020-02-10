@@ -7,13 +7,7 @@
 </ion-header>
 
 <ion-content>
-    <!--  <div class="ion-padding">-->
-    <!--    The world is your oyster.-->
-    <!--    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>-->
-    <!--  </div>-->
-
     <ion-list>
-
         <ng-container *ngIf="!items || items.length == 0">
             <div *ngFor="let n of [0,1,2,3]" padding>
                 <!--        <ion-skeleton></ion-skeleton>-->
@@ -22,10 +16,6 @@
                 </p>
             </div>
         </ng-container>
-
-        <!--    <ion-item *ngFor="let item of items">{{item.name}}-->
-        <!--      -->
-        <!--    </ion-item>-->
 
         <ion-item-sliding *ngFor="let item of items">
             <ion-item lines="inset" >
@@ -40,21 +30,7 @@
                 <div class="delete-container">
                     <ion-icon slot="end" name="close" button (click)="deleteItem(item)"></ion-icon>
                 </div>
-
-
-
-
-
             </ion-item>
-
-
-
-
-
-
-
-
-
         </ion-item-sliding>
     </ion-list>
 

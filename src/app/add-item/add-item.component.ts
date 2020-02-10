@@ -26,11 +26,14 @@ export class AddItemComponent implements OnInit {
     if (this.itemId) {
       this.loadItem();
     }
+
+
   }
 
    async loadItem() {
     const loading  = await this.loadingController.create({
-      content: 'loading...'
+      // content: 'loading...'
+      message: 'Saving Items'
     });
     await loading.present();
 
@@ -43,7 +46,8 @@ export class AddItemComponent implements OnInit {
   async saveItem() {
 
     const loading  = await this.loadingController.create({
-      content: 'Saving Item...'
+      // ontent: 'Saving Item...'
+      message: 'Saving Items'
     });
     await loading.present();
 
