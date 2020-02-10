@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>
+      Add a Item here
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="full">
+    <ion-item>
+      <ion-input required type="text" placeholder="Name" [(ngModel)]="item.name" (click)="showItem(item)"></ion-input>
+      <ion-input required type="text" placeholder="Priority" [(ngModel)]="item.priority"></ion-input>
+    </ion-item>
+<!--    <ion-item>-->
+
+<!--    </ion-item>-->
+  </ion-list>
+  <ion-button expand="full" (click)="saveItem()">Save Item</ion-button>
+</ion-content>
