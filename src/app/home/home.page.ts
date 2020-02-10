@@ -36,7 +36,6 @@ export class HomePage implements OnInit {
 
   deleteItem(item) {
     console.log(item);
-
     this.itemService.removeItem(item.id);
 
   }

@@ -14,11 +14,7 @@ export class DetailComponent implements OnInit {
   constructor(private itemService: ItemService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.itemService.getItem(this.route.snapshot.params['id']).subscribe(data => {
-      this.choosedItem = data;
-      console.log('you choosed');
-      console.log(this.choosedItem);
-    });
+    this.choosedItem = this.route.snapshot.data['item'];
 
     console.log('after request:');
     console.log(this.choosedItem);

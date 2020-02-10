@@ -15,7 +15,8 @@ export class ItemsResolverService implements Resolve<any> {
     const itemId = route.paramMap.get('id');
 
     return this.itemService.getItem(itemId).subscribe(data => {
+      console.log(data);
       return data;
-    })
+    });
   }
 }

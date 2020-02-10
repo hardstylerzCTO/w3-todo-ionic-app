@@ -1,71 +1,89 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Item, ItemService} from "../services/item.service";
 import {ActivatedRoute} from "@angular/router";
 import {LoadingController, NavController} from "@ionic/angular";
 
 @Component({
-  selector: 'app-add-item',
-  templateUrl: './add-item.component.html',
-  styleUrls: ['./add-item.component.scss'],
+    selector: 'app-add-item',
+    templateUrl: './add-item.component.html',
+    styleUrls: ['./add-item.component.scss'],
 })
 export class AddItemComponent implements OnInit {
 
-  item: Item = {
-    name: 'first Item',
-    priority: 'high'
-  };
+    item: Item[] = [
+        {
+            id: 'Kdsjhdasjdjasjd',
+            name: 'first Item',
+            priority: 'high'
+        },
+        {
+            id: 'asisdiasdiaszid22323kjkajsdkas',
+            name: 'second Item',
+            priority: 'low'
+        },
 
-  itemId = null;
+    ];
+
+    itemId = null;
+    choosenItem: Item;
 
 
-  constructor(private todoService: ItemService, private route: ActivatedRoute,
-              private loadingController: LoadingController, private nav: NavController) { }
-
-  ngOnInit() {
-    this.itemId = this.route.snapshot.params['id'];
-    if (this.itemId) {
-      this.loadItem();
+    constructor(private todoService: ItemService, private route: ActivatedRoute,
+                private loadingController: LoadingController, private nav: NavController) {
     }
 
-
-  }
-
-   async loadItem() {
-    const loading  = await this.loadingController.create({
-      // content: 'loading...'
-      message: 'Saving Items'
-    });
-    await loading.present();
-
-    this.todoService.getItem(this.itemId).subscribe(data => {
-      loading.dismiss();
-      this.item = data;
-    });
-  }
-
-  async saveItem() {
-
-    const loading  = await this.loadingController.create({
-      // ontent: 'Saving Item...'
-      message: 'Saving Items'
-    });
-    await loading.present();
-
-    if (this.itemId) {
-      this.todoService.updateItem(this.item, this.itemId).then(() => {
-        loading.dismiss();
-        this.nav.back();
-      })
-    } else {
-      this.todoService.addItem(this.item).then(() => {
-        loading.dismiss();
-        this.nav.back();
-      });
+    ngOnInit() {
+        this.itemId = this.route.snapshot.params['id'];
+        if (this.itemId) {
+            this.loadItem();
+        }
     }
-  }
 
-  showItem(item) {
-    console.log(item);
-  }
+    async loadItem() {
+        const loading = await this.loadingController.create({
+            message: 'loading...'
+        });
+        await loading.present();
+
+        this.todoService.getItem(this.itemId).subscribe(data => {
+            loading.dismiss();
+            this.choosenItem = data;
+        });
+    }
+
+    async saveItem() {
+
+        const loading = await this.loadingController.create({
+            message: 'Saving Item...'
+        });
+        await loading.present();
+
+        if (this.itemId) {
+            this.todoService.updateItem(this.choosenItem, this.itemId).then(() => {
+                loading.dismiss();
+                this.nav.back();
+            })
+        } else {
+            this.todoService.addItem(this.choosenItem).then(() => {
+                loading.dismiss();
+                this.nav.back();
+            });
+        }
+    }
+
+    showItem(item) {
+        console.log('test');
+        console.log(item.id);
+
+        this.item.forEach(data => {
+            console.log(data.id);
+            if (item.id === data.id) {
+                this.choosenItem = data;
+                console.log(this.choosenItem);
+                return;
+            }
+        });
+
+    }
 
 }

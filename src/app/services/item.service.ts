@@ -6,6 +6,7 @@ import actions from "@angular/fire/schematics/deploy/actions";
 
 
 export interface Item {
+  id: string,
   name: string,
   priority: string
 }

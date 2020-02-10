@@ -12,9 +12,9 @@
 
 <ion-content>
   <ion-list lines="full">
-    <ion-item>
-      <ion-input required type="text" placeholder="Name" [(ngModel)]="item.name" (click)="showItem(item)"></ion-input>
-      <ion-input required type="text" placeholder="Priority" [(ngModel)]="item.priority"></ion-input>
+    <ion-item *ngFor="let i of item" (click)="showItem(i)">
+      <ion-input required type="text" placeholder="Name" [(ngModel)]="i.name" ></ion-input>
+      <ion-input required type="text" placeholder="Priority" [(ngModel)]="i.priority"></ion-input>
     </ion-item>
 <!--    <ion-item>-->
 
